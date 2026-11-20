@@ -17,7 +17,6 @@ public class Cita {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
   @Column(name = "correo_usuario", nullable = false)
   private String correoUsuario;
 
@@ -37,7 +36,6 @@ public class Cita {
   @Column(nullable = false)
   private String motivo;
 
-  @NotBlank
   @Column(nullable = false)
   private String estado;
 

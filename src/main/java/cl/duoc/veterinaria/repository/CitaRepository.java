@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CitaRepository extends JpaRepository<Cita, Long> {
-  List<Cita> findByCorreoUsuarioOrderByFechaHoraDesc(String correoUsuario);
+  List<Cita> findByCorreoUsuarioAndArchivadaFalseOrderByFechaHoraDesc(String correoUsuario);
+
+  List<Cita> findByCorreoUsuarioAndArchivadaTrueOrderByFechaHoraDesc(String correoUsuario);
 
   Optional<Cita> findByIdAndCorreoUsuario(Long id, String correoUsuario);
 }

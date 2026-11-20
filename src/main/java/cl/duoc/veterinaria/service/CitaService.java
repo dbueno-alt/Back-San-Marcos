@@ -15,7 +15,11 @@ public class CitaService {
   }
 
   public List<Cita> listarPorUsuario(String correoUsuario) {
-    return repository.findByCorreoUsuarioOrderByFechaHoraDesc(correoUsuario);
+    return repository.findByCorreoUsuarioAndArchivadaFalseOrderByFechaHoraDesc(correoUsuario);
+  }
+
+  public List<Cita> listarArchivadasPorUsuario(String correoUsuario) {
+    return repository.findByCorreoUsuarioAndArchivadaTrueOrderByFechaHoraDesc(correoUsuario);
   }
 
   public Cita buscar(Long id, String correoUsuario) {
@@ -47,7 +51,6 @@ public class CitaService {
 
   public void archivar(Long id, String correoUsuario) {
     Cita cita = buscar(id, correoUsuario);
-    cita.setEstado("CANCELADA");
     cita.setArchivada(true);
     repository.save(cita);
   }
