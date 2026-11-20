@@ -14,25 +14,25 @@ public class CitaService {
     this.repository = repository;
   }
 
-  public List<Cita> listarPorUsuario(Long usuarioId) {
-    return repository.findByUsuarioIdOrderByFechaHoraDesc(usuarioId);
+  public List<Cita> listarPorUsuario(String correoUsuario) {
+    return repository.findByCorreoUsuarioOrderByFechaHoraDesc(correoUsuario);
   }
 
-  public Cita buscar(Long id, Long usuarioId) {
-    return repository.findByIdAndUsuarioId(id, usuarioId)
+  public Cita buscar(Long id, String correoUsuario) {
+    return repository.findByIdAndCorreoUsuario(id, correoUsuario)
       .orElseThrow(() -> new RecursoNoEncontradoException("Cita no encontrada: " + id));
   }
 
-  public Cita guardar(Cita cita, Long usuarioId) {
+  public Cita guardar(Cita cita, String correoUsuario) {
     cita.setId(null);
-    cita.setUsuarioId(usuarioId);
+    cita.setCorreoUsuario(correoUsuario);
     cita.setEstado("SOLICITADA");
     cita.setArchivada(false);
     return repository.save(cita);
   }
 
-  public Cita actualizar(Long id, Long usuarioId, Cita datos) {
-    Cita actual = buscar(id, usuarioId);
+  public Cita actualizar(Long id, String correoUsuario, Cita datos) {
+    Cita actual = buscar(id, correoUsuario);
     if (actual.isArchivada()) {
       throw new RecursoNoEncontradoException("Cita no encontrada: " + id);
     }
@@ -45,8 +45,8 @@ public class CitaService {
     return repository.save(actual);
   }
 
-  public void archivar(Long id, Long usuarioId) {
-    Cita cita = buscar(id, usuarioId);
+  public void archivar(Long id, String correoUsuario) {
+    Cita cita = buscar(id, correoUsuario);
     cita.setEstado("CANCELADA");
     cita.setArchivada(true);
     repository.save(cita);

@@ -17,9 +17,9 @@ public class Cita {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull
-  @Column(name = "usuario_id", nullable = false)
-  private Long usuarioId;
+  @NotBlank
+  @Column(name = "correo_usuario", nullable = false)
+  private String correoUsuario;
 
   @NotBlank
   @Column(name = "nombre_mascota", nullable = false)
@@ -55,12 +55,12 @@ public class Cita {
     this.id = id;
   }
 
-  public Long getUsuarioId() {
-    return usuarioId;
+  public String getCorreoUsuario() {
+    return correoUsuario;
   }
 
-  public void setUsuarioId(Long usuarioId) {
-    this.usuarioId = usuarioId;
+  public void setCorreoUsuario(String correoUsuario) {
+    this.correoUsuario = correoUsuario;
   }
 
   public String getNombreMascota() {
