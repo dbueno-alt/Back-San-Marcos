@@ -14,6 +14,10 @@ public class CitaService {
     this.repository = repository;
   }
 
+  public List<Cita> listarTodas() {
+    return repository.findAllByOrderByFechaHoraDesc();
+  }
+
   public List<Cita> listarPorUsuario(String correoUsuario) {
     return repository.findByCorreoUsuarioAndArchivadaFalseOrderByFechaHoraDesc(correoUsuario);
   }
