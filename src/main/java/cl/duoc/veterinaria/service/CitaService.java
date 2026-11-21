@@ -18,6 +18,14 @@ public class CitaService {
     return repository.findAllByOrderByFechaHoraDesc();
   }
 
+  public Cita actualizarEstadoAdmin(Long id, String estado) {
+    Cita cita = repository.findById(id)
+      .orElseThrow(() -> new RecursoNoEncontradoException("Cita no encontrada: " + id));
+    cita.setEstado(estado);
+    cita.setArchivada("ATENDIDA".equals(estado) || "CANCELADA".equals(estado));
+    return repository.save(cita);
+  }
+
   public List<Cita> listarPorUsuario(String correoUsuario) {
     return repository.findByCorreoUsuarioAndArchivadaFalseOrderByFechaHoraDesc(correoUsuario);
   }
