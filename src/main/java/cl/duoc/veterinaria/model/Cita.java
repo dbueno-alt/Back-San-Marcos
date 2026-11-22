@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ public class Cita {
   private String especie;
 
   @NotNull
+  @Future(message = "La fecha y hora deben ser futuras")
   @Column(name = "fecha_hora", nullable = false)
   private LocalDateTime fechaHora;
 
