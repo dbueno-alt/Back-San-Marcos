@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,10 +23,12 @@ public class Cita {
   private String correoUsuario;
 
   @NotBlank
+  @Size(max = 100, message = "El nombre de la mascota no puede superar 100 caracteres")
   @Column(name = "nombre_mascota", nullable = false)
   private String nombreMascota;
 
   @NotBlank
+  @Size(max = 50, message = "La especie no puede superar 50 caracteres")
   @Column(nullable = false)
   private String especie;
 
@@ -35,6 +38,7 @@ public class Cita {
   private LocalDateTime fechaHora;
 
   @NotBlank
+  @Size(max = 500, message = "El motivo no puede superar 500 caracteres")
   @Column(nullable = false)
   private String motivo;
 
