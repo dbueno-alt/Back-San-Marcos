@@ -32,10 +32,10 @@ public class CitaAdminController {
       @Valid @RequestBody EstadoCitaRequest solicitud) {
     return service.actualizarEstadoAdmin(id, solicitud.estado());
   }
+
   @PutMapping("/{id}")
   public Cita actualizar(@PathVariable Long id,
       @Valid @RequestBody CitaAdminRequest datos) {
     return service.actualizarAdmin(id, datos);
   }
 }
-

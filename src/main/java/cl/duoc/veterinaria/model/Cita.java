@@ -52,83 +52,63 @@ public class Cita {
   private boolean recordatorioSolicitado;
 
   @Size(max = 999, message = "Las observaciones no pueden superar los 999 caracteres")
-  @Column(length=999)
-
+  @Column(length = 999)
   private String observaciones;
 
-  public void setObservaciones(String observaciones) {
-    this.observaciones = observaciones;
-  }
+  @Size(max = 1000)
+  @Column(length = 1000)
+  private String diagnostico;
 
-  public Long getId() {
-    return id;
-  }
+  @Size(max = 1500)
+  @Column(length = 1500)
+  private String indicaciones;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+  @Size(max = 1500)
+  @Column(length = 1500)
+  private String receta;
 
-  public String getCorreoUsuario() {
-    return correoUsuario;
-  }
+  @Column(name = "veterinario_atiende")
+  private String veterinarioAtiende;
 
-  public void setCorreoUsuario(String correoUsuario) {
-    this.correoUsuario = correoUsuario;
-  }
+  public Long getId() { return id; }
+  public void setId(Long id) { this.id = id; }
 
-  public String getNombreMascota() {
-    return nombreMascota;
-  }
+  public String getCorreoUsuario() { return correoUsuario; }
+  public void setCorreoUsuario(String correoUsuario) { this.correoUsuario = correoUsuario; }
 
-  public void setNombreMascota(String nombreMascota) {
-    this.nombreMascota = nombreMascota;
-  }
+  public String getNombreMascota() { return nombreMascota; }
+  public void setNombreMascota(String nombreMascota) { this.nombreMascota = nombreMascota; }
 
-  public String getEspecie() {
-    return especie;
-  }
+  public String getEspecie() { return especie; }
+  public void setEspecie(String especie) { this.especie = especie; }
 
-  public void setEspecie(String especie) {
-    this.especie = especie;
-  }
+  public LocalDateTime getFechaHora() { return fechaHora; }
+  public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
 
-  public LocalDateTime getFechaHora() {
-    return fechaHora;
-  }
+  public String getMotivo() { return motivo; }
+  public void setMotivo(String motivo) { this.motivo = motivo; }
 
-  public void setFechaHora(LocalDateTime fechaHora) {
-    this.fechaHora = fechaHora;
-  }
+  public String getEstado() { return estado; }
+  public void setEstado(String estado) { this.estado = estado; }
 
-  public String getMotivo() {
-    return motivo;
-  }
+  public boolean isArchivada() { return archivada; }
+  public void setArchivada(boolean archivada) { this.archivada = archivada; }
 
-  public void setMotivo(String motivo) {
-    this.motivo = motivo;
-  }
+  public boolean isRecordatorioSolicitado() { return recordatorioSolicitado; }
+  public void setRecordatorioSolicitado(boolean recordatorioSolicitado) { this.recordatorioSolicitado = recordatorioSolicitado; }
 
-  public String getEstado() {
-    return estado;
-  }
+  public String getObservaciones() { return observaciones; }
+  public void setObservaciones(String observaciones) { this.observaciones = observaciones; }
 
-  public void setEstado(String estado) {
-    this.estado = estado;
-  }
+  public String getDiagnostico() { return diagnostico; }
+  public void setDiagnostico(String diagnostico) { this.diagnostico = diagnostico; }
 
-  public boolean isArchivada() {
-    return archivada;
-  }
+  public String getIndicaciones() { return indicaciones; }
+  public void setIndicaciones(String indicaciones) { this.indicaciones = indicaciones; }
 
-  public void setArchivada(boolean archivada) {
-    this.archivada = archivada;
-  }
+  public String getReceta() { return receta; }
+  public void setReceta(String receta) { this.receta = receta; }
 
-  public boolean isRecordatorioSolicitado() {
-    return recordatorioSolicitado;
-  }
-
-  public void setRecordatorioSolicitado(boolean recordatorioSolicitado) {
-    this.recordatorioSolicitado = recordatorioSolicitado;
-  }
+  public String getVeterinarioAtiende() { return veterinarioAtiende; }
+  public void setVeterinarioAtiende(String veterinarioAtiende) { this.veterinarioAtiende = veterinarioAtiende; }
 }

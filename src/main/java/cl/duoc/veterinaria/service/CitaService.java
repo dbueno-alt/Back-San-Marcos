@@ -1,6 +1,6 @@
 package cl.duoc.veterinaria.service;
 
-import  cl.duoc.veterinaria.dto.CitaAdminRequest;
+import cl.duoc.veterinaria.dto.CitaAdminRequest;
 import cl.duoc.veterinaria.exception.RecursoNoEncontradoException;
 import cl.duoc.veterinaria.model.Cita;
 import cl.duoc.veterinaria.repository.CitaRepository;
@@ -26,7 +26,7 @@ public class CitaService {
     cita.setArchivada("ATENDIDA".equals(estado) || "CANCELADA".equals(estado));
     return repository.save(cita);
   }
-  
+
   public Cita actualizarAdmin(Long id, CitaAdminRequest datos) {
     Cita cita = repository.findById(id)
       .orElseThrow(() -> new RecursoNoEncontradoException("Cita no encontrada: " + id));
@@ -65,13 +65,25 @@ public class CitaService {
     if (actual.isArchivada()) {
       throw new RecursoNoEncontradoException("Cita no encontrada: " + id);
     }
-
     actual.setNombreMascota(datos.getNombreMascota());
     actual.setEspecie(datos.getEspecie());
     actual.setFechaHora(datos.getFechaHora());
     actual.setMotivo(datos.getMotivo());
     actual.setRecordatorioSolicitado(datos.isRecordatorioSolicitado());
     return repository.save(actual);
+  }
+
+  public Cita registrarAtencionMedica(Long id, String correoVeterinario,
+      String diagnostico, String indicaciones, String receta) {
+    Cita cita = repository.findById(id)
+      .orElseThrow(() -> new RecursoNoEncontradoException("Cita no encontrada: " + id));
+    cita.setDiagnostico(diagnostico);
+    cita.setIndicaciones(indicaciones);
+    cita.setReceta(receta);
+    cita.setVeterinarioAtiende(correoVeterinario);
+    cita.setEstado("ATENDIDA");
+    cita.setArchivada(true);
+    return repository.save(cita);
   }
 
   public void archivar(Long id, String correoUsuario) {
