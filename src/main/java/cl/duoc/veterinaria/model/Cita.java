@@ -51,6 +51,15 @@ public class Cita {
   @Column(name = "recordatorio_solicitado", nullable = false)
   private boolean recordatorioSolicitado;
 
+  @Size(max = 999, message = "Las observaciones no pueden superar los 999 caracteres")
+  @Column(length=999)
+
+  private String observaciones;
+
+  public void setObservaciones(String observaciones) {
+    this.observaciones = observaciones;
+  }
+
   public Long getId() {
     return id;
   }

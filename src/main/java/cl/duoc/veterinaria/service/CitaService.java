@@ -1,5 +1,6 @@
 package cl.duoc.veterinaria.service;
 
+import  cl.duoc.veterinaria.dto.CitaAdminRequest;
 import cl.duoc.veterinaria.exception.RecursoNoEncontradoException;
 import cl.duoc.veterinaria.model.Cita;
 import cl.duoc.veterinaria.repository.CitaRepository;
@@ -25,6 +26,17 @@ public class CitaService {
     cita.setArchivada("ATENDIDA".equals(estado) || "CANCELADA".equals(estado));
     return repository.save(cita);
   }
+  
+  public Cita actualizarAdmin(Long id, CitaAdminRequest datos) {
+    Cita cita = repository.findById(id)
+      .orElseThrow(() -> new RecursoNoEncontradoException("Cita no encontrada: " + id));
+    cita.setNombreMascota(datos.nombreMascota());
+    cita.setEspecie(datos.especie());
+    cita.setFechaHora(datos.fechaHora());
+    cita.setMotivo(datos.motivo());
+    cita.setObservaciones(datos.obvervaciones());
+    return repository.save(cita);
+  }
 
   public List<Cita> listarPorUsuario(String correoUsuario) {
     return repository.findByCorreoUsuarioAndArchivadaFalseOrderByFechaHoraDesc(correoUsuario);
@@ -42,6 +54,7 @@ public class CitaService {
   public Cita guardar(Cita cita, String correoUsuario) {
     cita.setId(null);
     cita.setCorreoUsuario(correoUsuario);
+    cita.setObservaciones(null);
     cita.setEstado("SOLICITADA");
     cita.setArchivada(false);
     return repository.save(cita);

@@ -1,5 +1,6 @@
 package cl.duoc.veterinaria.controller;
 
+import cl.duoc.veterinaria.dto.CitaAdminRequest;
 import cl.duoc.veterinaria.dto.EstadoCitaRequest;
 import cl.duoc.veterinaria.model.Cita;
 import cl.duoc.veterinaria.service.CitaService;
@@ -31,4 +32,10 @@ public class CitaAdminController {
       @Valid @RequestBody EstadoCitaRequest solicitud) {
     return service.actualizarEstadoAdmin(id, solicitud.estado());
   }
+  @PutMapping("/{id}")
+  public Cita actualizar(@PathVariable Long id,
+      @Valid @RequestBody CitaAdminRequest datos) {
+    return service.actualizarAdmin(id, datos);
+  }
 }
+

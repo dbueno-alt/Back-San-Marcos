@@ -29,7 +29,7 @@ public class SecurityConfig {
       .authorizeHttpRequests(auth -> auth
         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+        .requestMatchers("/api/v1/admin/**").hasAnyRole("ADMIN","VETERINARIO")
         .requestMatchers("/api/v1/citas/**").authenticated()
         .anyRequest().denyAll())
       .exceptionHandling(errors -> errors.authenticationEntryPoint(
